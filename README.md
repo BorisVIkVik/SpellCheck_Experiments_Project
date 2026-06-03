@@ -33,7 +33,7 @@ The goal of this work is to investigate whether device-aware spell correction ca
 
 https://huggingface.co/datasets/BW/RU_SPELLCHECK_DEVICE
 
-A new dataset was collected using a custom application where users were asked to retype sentences from Russian classical literature.
+A new dataset was collected using a custom application where users were asked to retype sentences from Russian classical literature. https://github.com/BorisVIkVik/SpellCheck_Game_Dataset
 
 For every sample, the application stores:
 
