@@ -70,7 +70,7 @@ Training environment:
 
 - Google Colab
 
-## Results
+## Results on RU_SPELLCHECK_DEVICE dataset
 
 ### Fine-Tuned Qwen3.5-0.8B
 
@@ -93,6 +93,9 @@ https://huggingface.co/BW/Qwen3.5_Fine-tuned_on_RU_SPELLCHECK_DEVICE
 | CASE        | 17.24         | 47.62      | 25.32   |
 | PUNCT       | 11.38         | 25.75      | 15.78   |
 | YO          | 0.00          | 0.00       | 0.00    |
+
+
+So we can see that my model overcame SAGE-FREDT5-Large in case and punctuation correction.
 
 ## Citation
 
