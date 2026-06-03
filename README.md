@@ -31,6 +31,8 @@ The goal of this work is to investigate whether device-aware spell correction ca
 
 ### RU_SPELLCHECK_DEVICE
 
+https://huggingface.co/datasets/BW/RU_SPELLCHECK_DEVICE
+
 A new dataset was collected using a custom application where users were asked to retype sentences from Russian classical literature.
 
 For every sample, the application stores:
@@ -72,6 +74,8 @@ Training environment:
 
 ### Fine-Tuned Qwen3.5-0.8B
 
+https://huggingface.co/BW/Qwen3.5_Fine-tuned_on_RU_SPELLCHECK_DEVICE
+
 | Metric Type | Precision | Recall | F1 |
 |-------------|------------|---------|-----|
 | Overall | 35.17 | 31.28 | 33.11 |
@@ -79,6 +83,16 @@ Training environment:
 | CASE | 47.73 | 50.00 | 48.84 |
 | PUNCT | 53.85 | 50.30 | 52.01 |
 | YO | 0.00 | 0.00 | 0.00 |
+
+### SAGE-FREDT5-Large (SberDevices)
+
+| Metric Type | Precision (%) | Recall (%) | F1 (%) |
+|-------------|---------------|------------|---------|
+| Overall     | 64.42         | 73.73      | 68.76   |
+| SPELL       | 59.91         | 65.42      | 62.55   |
+| CASE        | 17.24         | 47.62      | 25.32   |
+| PUNCT       | 11.38         | 25.75      | 15.78   |
+| YO          | 0.00          | 0.00       | 0.00    |
 
 ## Citation
 
