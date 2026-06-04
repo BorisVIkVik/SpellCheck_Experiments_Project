@@ -97,6 +97,26 @@ https://huggingface.co/BW/Qwen3.5_Fine-tuned_on_RU_SPELLCHECK_DEVICE
 
 So we can see that my model overcame SAGE-FREDT5-Large in case and punctuation correction.
 
+## Honorable Mention
+
+New dataset give interesting opportunitues in text classification task, because
+we can try to predict the device that the person uses. This maybe useful for
+improving spellcheck because typing on different device causes different error.
+Also in maybe useful in Criminalistics. Here are results of simple test. I’ve
+fine-tuned DeepPavlov/rubert-base-cased for predicting device label using typed
+text.
+
+| Metric                     | Value      |
+|---------------------------|-----------:|
+| eval_loss                 | 0.73699    |
+| eval_accuracy             | 0.68919    |
+| eval_f1                   | 0.68411    |
+| eval_precision            | 0.69390    |
+| eval_recall               | 0.68919    |
+| eval_runtime (s)          | 2.6592     |
+| eval_samples_per_second   | 111.313    |
+| eval_steps_per_second     | 7.145      |
+| epoch                     | 5.0        |
 ## Citation
 
 ```bibtex
