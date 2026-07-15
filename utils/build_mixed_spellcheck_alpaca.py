@@ -19,6 +19,7 @@ if str(_UTILS_DIR) not in sys.path:
     sys.path.insert(0, str(_UTILS_DIR))
 
 from convert_spellcheck_benchmark_to_alpaca import (  # noqa: E402
+    DEFAULT_STORAGE_FORMAT,
     TARGET_REPO,
     convert_row,
     load_instruction,
@@ -211,6 +212,12 @@ def parse_args() -> argparse.Namespace:
         metavar="PATH",
         help="Сохранить датасет локально",
     )
+    parser.add_argument(
+        "--storage-format",
+        choices=["csv", "parquet"],
+        default=DEFAULT_STORAGE_FORMAT,
+        help=f"Формат файлов при --push (по умолчанию: {DEFAULT_STORAGE_FORMAT})",
+    )
     return parser.parse_args()
 
 
@@ -254,12 +261,13 @@ def main() -> None:
         print(f"Saved locally to: {args.save_local}")
 
     if args.push:
-        print(f"Pushing dataset to: {args.target_repo}")
+        print(f"Pushing dataset to: {args.target_repo} ({args.storage_format})")
         push_dataset(
             dataset,
             target_repo=args.target_repo,
             private=args.private,
             token=args.token,
+            storage_format=args.storage_format,
         )
         print("Upload complete.")
     elif not args.save_local:
