@@ -90,21 +90,20 @@ Training environment:
 
 
 
-### Results
+## Results
 
 - [BW/Qwen2.5-14b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Qwen2.5-14b-Instruct-RU-Spellcheck-fine-tuned)
 - [BW/Qwen2.5-7b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Qwen2.5-7b-Instruct-RU-Spellcheck-fine-tuned)
 - [BW/Ministral-8b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Ministral-8b-Instruct-RU-Spellcheck-fine-tuned)
 
-[https://huggingface.co/BW/Qwen3.5_Fine-tuned_on_RU_SPELLCHECK_DEVICE](https://huggingface.co/BW/Qwen3.5_Fine-tuned_on_RU_SPELLCHECK_DEVICE)
+### My Best Model: [BW/Qwen2.5-14b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Qwen2.5-14b-Instruct-RU-Spellcheck-fine-tuned)
 
-
-| Metric Type | Precision | Recall | F1    |
-| ----------- | --------- | ------ | ----- |
-| Overall     | 35.17     | 31.28  | 33.11 |
-| SPELL       | 39.60     | 37.02  | 38.27 |
-| CASE        | 47.73     | 50.00  | 48.84 |
-| PUNCT       | 53.85     | 50.30  | 52.01 |
+| Metric Type | Precision (%) | Recall (%) | F1 (%) |
+| ----------- | ------------- | ---------- | ------ |
+| Overall     | 51.90         | 49.65      | 50.75  |
+| SPELL       | 54.09         | 53.90      | 53.99  |
+| CASE        | 60.00         | 50.00      | 54.55  |
+| PUNCT       | 53.37         | 52.10      | 52.73  |
 
 
 
