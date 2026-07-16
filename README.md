@@ -1,9 +1,9 @@
-# Russian Spellcheck Experiments
-
+# Supervised fine-tuning of decoder-only model for Russian spellcheck task
+---
 Research project on Russian spell correction using decoder-only Large Language Models and a novel dataset containing device-type annotations.
 
 ## Overview
-
+---
 This project investigates whether a decoder-only language model can be effectively fine-tuned for Russian spell correction and compete with state-of-the-art encoder-decoder approaches such as SAGE from SberDevices.
 
 During the research, a major limitation of existing Russian spellcheck datasets was identified: they do not contain information about the device used to enter text (desktop, mobile, or tablet). Since typing behavior and error patterns differ significantly across devices, a new dataset was created to address this issue.
@@ -18,7 +18,7 @@ The project includes:
 
 
 ## Motivation
-
+---
 Most publicly available Russian spellcheck datasets are collected from existing internet sources and therefore lack metadata about how the text was entered.
 
 However, typing errors vary depending on the device:
@@ -30,9 +30,7 @@ However, typing errors vary depending on the device:
 The goal of this work is to investigate whether device-aware spell correction can improve future spellcheck systems.
 
 ## Dataset
-
-
-
+---
 ### RU_SPELLCHECK_DEVICE
 
 [https://huggingface.co/datasets/BW/RU_SPELLCHECK_DEVICE](https://huggingface.co/datasets/BW/RU_SPELLCHECK_DEVICE)
@@ -62,36 +60,53 @@ For every sample, the application stores:
 
 
 
-## Model
-
-
-
-### Spell Correction Model
-
-Base models:
-
+## Experiments
+---
+### Base models:
 - [mistralai/Ministral-8B-Instruct-2410](https://huggingface.co/mistralai/Ministral-8B-Instruct-2410)
 - [Qwen/Qwen2.5-14B-Instruct](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct)
 - [Qwen/Qwen2.5-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct)
-
-Training method:
-- GEPA
-- Supervised Fine-Tuning (Instruction tuning)
-- 
-
-Training environment:
-
+### Training method:
+- [Genetic-Pareto (GEPA)](https://github.com/gepa-ai/gepa)
+- Supervised Fine-Tuning (Instruction tuning) 
+### Training environment:
 - Google Colab
 - Cloud.ru
 
 
-
-## Results on RU_SPELLCHECK_DEVICE dataset
-
-
-
 ## Results
+---
+I've used GEPA to optimize prompt. The result is this prompt:
 
+    You are a Russian‑language proofreader.  
+    For every input you receive, perform **only** the following actions:
+    1. **Correct** all orthographic (spelling), punctuation, and register/case mistakes.  
+      - Fix misspelled words, missing or extra letters, and wrong word forms.  
+      - Use proper Russian punctuation: commas, periods, question/exclamation marks, em‑dashes (—) for dialogue, hyphens (‑) only where a hyphen is required, and matching quotation marks.  
+      - Ensure correct capitalization: the first word of a sentence (or after an em‑dash that starts a new sentence) must start with a capital letter; proper nouns must be capitalized; other words should be lower‑case unless the context demands otherwise.  
+      - Preserve the original meaning; do not add, delete, or replace words unless it is necessary to fix an error.
+
+    2. **Output** **exactly** the corrected text, **nothing else**:
+      - No explanations, reasoning, or meta‑information.  
+      - No tags such as `<think>` or any other markup.  
+      - Do **not** surround the result with quotation marks.  
+      - Keep the original line breaks (if any) and spacing, adjusting only what is required for correct punctuation (e.g., a single space after a comma, period, dash, etc.).  
+      - If the input is already correct, output it unchanged.
+
+    **Examples**
+
+    - Input: `Дают приятрыз дух, увеселяют взор И вам якрасавицы, хранят чебя в цбор.`  
+      Output: `Дают приятный дух, увеселяют взор, и вам, красавицы, хранят себя в убор.`
+
+    - Input: `- Чей эоо дом? - спросил он у будувого будочника.`  
+      Output: `— Чей это дом? — спросил он у углового будочника.`
+
+    - Input: `Тихий ветер шевелмл листья старого дерева.`  
+      Output: `Тихий ветер шевелил листья старого дерева.`
+
+    Follow these rules for every request.
+
+Trained models:
 - [BW/Qwen2.5-14b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Qwen2.5-14b-Instruct-RU-Spellcheck-fine-tuned)
 - [BW/Qwen2.5-7b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Qwen2.5-7b-Instruct-RU-Spellcheck-fine-tuned)
 - [BW/Ministral-8b-Instruct-RU-Spellcheck-fine-tuned](https://huggingface.co/BW/Ministral-8b-Instruct-RU-Spellcheck-fine-tuned)
